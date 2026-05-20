@@ -1,0 +1,274 @@
+# Comandos de Artisan más usados con Laravel Sail
+
+## Ejecutar Sail
+
+```bash
+./vendor/bin/sail up
+```
+
+## Ejecutar Sail en segundo plano
+
+```bash
+./vendor/bin/sail up -d
+```
+
+## Parar contenedores
+
+```bash
+./vendor/bin/sail down
+```
+
+## Reiniciar contenedores
+
+```bash
+./vendor/bin/sail restart
+```
+
+---
+
+# Migraciones
+
+## Ejecutar migraciones
+
+```bash
+./vendor/bin/sail artisan migrate
+```
+
+## Ejecutar migraciones y seeders
+
+```bash
+./vendor/bin/sail artisan migrate --seed
+```
+
+## Borrar toda la BD y rehacer todo
+
+```bash
+./vendor/bin/sail artisan migrate:fresh
+```
+
+## Borrar toda la BD, rehacer y ejecutar seeders
+
+```bash
+./vendor/bin/sail artisan migrate:fresh --seed
+```
+
+## Revertir última migración
+
+```bash
+./vendor/bin/sail artisan migrate:rollback
+```
+
+## Revertir todas las migraciones
+
+```bash
+./vendor/bin/sail artisan migrate:reset
+```
+
+## Rehacer migraciones
+
+```bash
+./vendor/bin/sail artisan migrate:refresh
+```
+
+## Rehacer migraciones y seeders
+
+```bash
+./vendor/bin/sail artisan migrate:refresh --seed
+```
+
+---
+
+# Crear archivos
+
+## Crear migración
+
+```bash
+./vendor/bin/sail artisan make:migration nombre_migracion
+```
+
+## Crear modelo
+
+```bash
+./vendor/bin/sail artisan make:model NombreModelo
+```
+
+## Crear modelo con migración, factory y seeder
+
+```bash
+./vendor/bin/sail artisan make:model NombreModelo -mfs
+```
+
+## Crear controlador
+
+```bash
+./vendor/bin/sail artisan make:controller NombreController
+```
+
+## Crear controlador resource
+
+```bash
+./vendor/bin/sail artisan make:controller NombreController --resource
+```
+
+## Crear middleware
+
+```bash
+./vendor/bin/sail artisan make:middleware NombreMiddleware
+```
+
+## Crear request
+
+```bash
+./vendor/bin/sail artisan make:request NombreRequest
+```
+
+## Crear seeder
+
+```bash
+./vendor/bin/sail artisan make:seeder NombreSeeder
+```
+
+## Crear factory
+
+```bash
+./vendor/bin/sail artisan make:factory NombreFactory
+```
+
+## Crear policy
+
+```bash
+./vendor/bin/sail artisan make:policy NombrePolicy
+```
+
+## Crear test
+
+```bash
+./vendor/bin/sail artisan make:test NombreTest
+```
+
+---
+
+# Seeders
+
+## Ejecutar seeders
+
+```bash
+./vendor/bin/sail artisan db:seed
+```
+
+## Ejecutar un seeder concreto
+
+```bash
+./vendor/bin/sail artisan db:seed --class=NombreSeeder
+```
+
+---
+
+# Caché
+
+## Limpiar caché
+
+```bash
+./vendor/bin/sail artisan cache:clear
+```
+
+## Limpiar configuración
+
+```bash
+./vendor/bin/sail artisan config:clear
+```
+
+## Limpiar rutas cacheadas
+
+```bash
+./vendor/bin/sail artisan route:clear
+```
+
+## Limpiar vistas cacheadas
+
+```bash
+./vendor/bin/sail artisan view:clear
+```
+
+## Limpiar todo optimizado
+
+```bash
+./vendor/bin/sail artisan optimize:clear
+```
+
+---
+
+# Rutas y debug
+
+## Ver rutas
+
+```bash
+./vendor/bin/sail artisan route:list
+```
+
+## Ver variables de entorno
+
+```bash
+./vendor/bin/sail artisan about
+```
+
+## Abrir Tinker
+
+```bash
+./vendor/bin/sail artisan tinker
+```
+
+---
+
+# Testing
+
+## Ejecutar tests
+
+```bash
+./vendor/bin/sail artisan test
+```
+
+## Ejecutar un test concreto
+
+```bash
+./vendor/bin/sail artisan test --filter NombreTest
+```
+
+---
+
+# Composer
+
+## Instalar dependencias
+
+```bash
+./vendor/bin/sail composer install
+```
+
+## Actualizar dependencias
+
+```bash
+./vendor/bin/sail composer update
+```
+
+---
+
+# NPM / Vite
+
+## Instalar paquetes
+
+```bash
+./vendor/bin/sail npm install
+```
+
+## Ejecutar Vite
+
+```bash
+./vendor/bin/sail npm run dev
+```
+
+## Compilar para producción
+
+```bash
+./vendor/bin/sail npm run build
+```
+
