@@ -1,0 +1,191 @@
+/* sectores-editor.css – Google Material Design */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+.sectores-editor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sectores-editor h1 {
+  color: #202124;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 900;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+
+.sectores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sector-card {
+  background: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sector-card:hover {
+  border-color: #1f73e6;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.sector-card h3 {
+  color: #202124;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.sector-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: #5f6368;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #dadce0;
+}
+
+.sector-info-row:last-child {
+  border-bottom: none;
+}
+
+.sector-info-row strong {
+  color: #202124;
+  font-weight: 600;
+}
+
+.sector-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #dadce0;
+  background: #ffffff;
+  color: #202124;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-edit {
+  border-color: #1f73e6;
+  color: #1f73e6;
+}
+
+.btn-edit:hover {
+  background: rgba(31, 115, 230, 0.08);
+  border-color: #1765cc;
+  color: #1765cc;
+}
+
+.btn-delete {
+  border-color: #ea4335;
+  color: #ea4335;
+}
+
+.btn-delete:hover {
+  background: rgba(234, 67, 53, 0.08);
+  border-color: #c5221f;
+  color: #c5221f;
+}
+
+.form-editor {
+  background: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #202124;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #202124;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+  border-color: #dadce0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #1f73e6;
+  box-shadow: 0 0 0 3px rgba(31, 115, 230, 0.1);
+}
+
+.btn-submit {
+  padding: 0.875rem 2rem;
+  background: #1f73e6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-submit:hover {
+  background: #1765cc;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .sectores-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-editor {
+    padding: 1.25rem;
+  }
+}

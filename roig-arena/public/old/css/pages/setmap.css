@@ -1,0 +1,170 @@
+/* setmap.css – Google Material Design */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+.setmap-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.setmap-header {
+  margin-bottom: 2rem;
+}
+
+.setmap-header h1 {
+  color: #202124;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 900;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.setmap-header p {
+  color: #5f6368;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.setmap-canvas {
+  background: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f6 100%);
+}
+
+.setmap-canvas svg {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+.setmap-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.control-group {
+  background: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.control-group h3 {
+  color: #202124;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.control-item {
+  margin-bottom: 1rem;
+}
+
+.control-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #202124;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.control-item input,
+.control-item select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #202124;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.control-item input:focus,
+.control-item select:focus {
+  outline: none;
+  border-color: #1f73e6;
+  box-shadow: 0 0 0 3px rgba(31, 115, 230, 0.1);
+}
+
+.btn-apply {
+  width: 100%;
+  padding: 0.75rem;
+  background: #1f73e6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-apply:hover {
+  background: #1765cc;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.setmap-info {
+  background: #f8f9fa;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.setmap-info h3 {
+  color: #202124;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #dadce0;
+  color: #5f6368;
+  font-size: 0.9rem;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row strong {
+  color: #202124;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .setmap-container {
+    padding: 1rem;
+  }
+
+  .setmap-canvas {
+    padding: 1rem;
+    min-height: 400px;
+  }
+
+  .setmap-controls {
+    grid-template-columns: 1fr;
+  }
+}

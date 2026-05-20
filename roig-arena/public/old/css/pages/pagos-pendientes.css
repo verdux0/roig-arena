@@ -1,0 +1,215 @@
+/* pagos-pendientes.css – Google Material Design */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+.pagos-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+  padding: 0.6rem 0;
+}
+
+.pagos-header h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.65rem, 4vw, 2.4rem);
+  color: #202124;
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pagos-header p {
+  color: #5f6368;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pagos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.pago-evento-card {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #dadce0;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pago-evento-card:hover {
+  border-color: #1f73e6;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.pago-evento-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pago-evento-nombre {
+  margin: 0 0 0.45rem;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  color: #202124;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pago-evento-meta {
+  margin: 0;
+  color: #5f6368;
+  font-size: 0.88rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pago-fecha {
+  display: block;
+}
+
+.pago-evento-monto {
+  min-width: 130px;
+  text-align: right;
+  padding: 0.72rem 0.82rem;
+  border-radius: 6px;
+  border: 1px solid rgba(31, 115, 230, 0.2);
+  background: rgba(31, 115, 230, 0.08);
+}
+
+.pago-monto-text {
+  display: block;
+  margin: 0 0 0.25rem;
+  font-size: 1.28rem;
+  color: #1f73e6;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pago-evento-monto small {
+  display: block;
+  color: #5f6368;
+  font-size: 0.76rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pago-entradas-list {
+  border-top: 1px solid #dadce0;
+  padding-top: 0.95rem;
+}
+
+.pago-entradas-title {
+  margin: 0 0 0.72rem;
+  color: #202124;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.entradas-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.entrada-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #dadce0;
+  background: #f8f9fa;
+  font-size: 0.9rem;
+  font-family: 'Roboto', sans-serif;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.entrada-item:hover {
+  background: rgba(31, 115, 230, 0.04);
+  border-color: #1f73e6;
+}
+
+.entrada-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.entrada-asiento {
+  min-width: 40px;
+  color: #202124;
+  font-size: 0.94rem;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+}
+
+.entrada-sector {
+  color: #5f6368;
+  font-size: 0.84rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.entrada-precio {
+  min-width: 60px;
+  text-align: right;
+  color: #1f73e6;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+.pago-evento-footer {
+  margin-top: auto;
+  padding-top: 0.95rem;
+  border-top: 1px solid #dadce0;
+}
+
+.btn-pagar {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  background: #1f73e6;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  font-family: 'Roboto', sans-serif;
+}
+
+.btn-pagar:hover {
+  background: #1765cc;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.btn-pagar:active {
+  transform: translateY(0);
+}
+
+.btn-pagar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .pago-evento-header {
+    flex-direction: column;
+  }
+
+  .pago-evento-monto {
+    width: 100%;
+  }
+}

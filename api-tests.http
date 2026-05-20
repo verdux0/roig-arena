@@ -1,0 +1,373 @@
+###############################################
+# TESTS API - PROYECTO ROIG ARENA
+# REST Client para VS Code
+# Extensión: REST Client (Huachao Mao)
+###############################################
+
+# VARIABLES GLOBALES
+@baseUrl = http://localhost/api
+@token = 4|axLfSAY9gws7yNkV7Pdhomv219cB9jQHogrK40Ck2766dfc1
+@adminToken = 3|uSefVjXD5IzGnsitnz5pDLIuflTmQMwAxYooLu3fb2fb519a
+@eventoId = 1
+@sectorId = 1
+@asientoId = 1
+@reservaId = 1
+@entradaId = 1
+
+###############################################
+# CASOS DE USO - USUARIO NO AUTENTICADO
+###############################################
+
+### CU-01: Registrarse en el sistema
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "email": "juan@example.com",
+  "password": "password123",
+  "password_confirmation": "password123"
+}
+
+### CU-02: Iniciar sesión (Usuario normal)
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "juan@example.com",
+  "password": "password"
+}
+
+### CU-02b: Iniciar sesión (Administrador)
+# @name loginAdmin
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "admin@roigarena.com",
+  "password": "admin123"
+}
+
+### CU-03: Ver listado de eventos futuros
+GET {{baseUrl}}/eventos
+
+### CU-04: Ver detalle de un evento
+GET {{baseUrl}}/eventos/{{eventoId}}
+
+### CU-05: Ver listado de sectores activos
+GET {{baseUrl}}/sectores
+
+### CU-06: Ver asientos disponibles de un evento
+GET {{baseUrl}}/eventos/{{eventoId}}/asientos
+
+### CU-07: Ver asientos de un sector específico en un evento
+GET {{baseUrl}}/eventos/{{eventoId}}/sectores/{{sectorId}}/asientos
+
+###############################################
+# CASOS DE USO - USUARIO AUTENTICADO
+###############################################
+
+### CU-08: Ver mi perfil
+GET {{baseUrl}}/user
+Authorization: Bearer {{token}}
+
+### CU-09: Cerrar sesión
+POST {{baseUrl}}/logout
+Authorization: Bearer {{token}}
+
+### CU-10: Reservar un asiento (añadir al carrito)
+POST {{baseUrl}}/reservas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "evento_id": {{eventoId}},
+  "asiento_id": {{asientoId}}
+}
+
+### CU-11: Ver mis reservas activas (mi carrito)
+GET {{baseUrl}}/reservas
+Authorization: Bearer {{token}}
+
+### CU-12: Cancelar una reserva (quitar del carrito)
+DELETE {{baseUrl}}/reservas/{{reservaId}}
+Authorization: Bearer {{token}}
+
+### CU-13: Confirmar compra (convertir reservas en entradas)
+POST {{baseUrl}}/compras
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "reservas": [{{reservaId}}]
+}
+
+### CU-14: Ver mis entradas compradas
+GET {{baseUrl}}/entradas
+Authorization: Bearer {{token}}
+
+### CU-15: Ver detalle de una entrada
+GET {{baseUrl}}/entradas/{{entradaId}}
+Authorization: Bearer {{token}}
+
+###############################################
+# CASOS DE USO - ADMINISTRADOR
+###############################################
+
+### CU-16: Crear un evento
+POST {{baseUrl}}/admin/eventos
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "nombre": "Concierto Rock 2026",
+  "descripcion_corta": "Gran concierto de rock",
+  "descripcion_larga": "El mejor concierto de rock del año con las mejores bandas internacionales",
+  "poster_url": "https://via.placeholder.com/640x480",
+  "fecha": "2026-12-31",
+  "hora": "20:00"
+}
+
+### CU-17: Actualizar un evento
+PUT {{baseUrl}}/admin/eventos/{{eventoId}}
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "nombre": "Concierto Rock 2026 - ACTUALIZADO",
+  "descripcion_corta": "Gran concierto de rock actualizado"
+}
+
+### CU-18: Eliminar un evento
+DELETE {{baseUrl}}/admin/eventos/{{eventoId}}
+Authorization: Bearer {{adminToken}}
+
+### CU-19: Crear un sector
+POST {{baseUrl}}/admin/sectores
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "nombre": "Sector VIP Premium",
+  "descripcion": "Zona VIP con servicios premium",
+  "activo": true
+}
+
+### CU-20: Actualizar un sector
+PUT {{baseUrl}}/admin/sectores/{{sectorId}}
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "nombre": "Sector VIP Premium - ACTUALIZADO",
+  "activo": true
+}
+
+### CU-21: Eliminar un sector
+DELETE {{baseUrl}}/admin/sectores/{{sectorId}}
+Authorization: Bearer {{adminToken}}
+
+###############################################
+# FLUJO COMPLETO - COMPRA DE ENTRADA
+###############################################
+
+### PASO 1: Registrar nuevo usuario
+# @name registroFlujo
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+  "nombre": "María",
+  "apellido": "García",
+  "email": "maria.test@example.com",
+  "password": "password123",
+  "password_confirmation": "password123"
+}
+
+### PASO 2: Ver eventos disponibles
+GET {{baseUrl}}/eventos
+
+### PASO 3: Ver detalle del evento 1
+GET {{baseUrl}}/eventos/1
+
+### PASO 4: Ver asientos disponibles del evento 1
+GET {{baseUrl}}/eventos/1/asientos
+
+### PASO 5: Reservar asiento 100
+POST {{baseUrl}}/reservas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "evento_id": 1,
+  "asiento_id": 100
+}
+
+### PASO 6: Ver mi carrito
+GET {{baseUrl}}/reservas
+Authorization: Bearer {{token}}
+
+### PASO 7: Confirmar compra
+POST {{baseUrl}}/compras
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "reservas": [1]
+}
+
+### PASO 8: Ver mis entradas
+GET {{baseUrl}}/entradas
+Authorization: Bearer {{token}}
+
+###############################################
+# TESTS DE VALIDACIÓN Y ERRORES
+###############################################
+
+### ERROR: Registrar con email duplicado
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+  "nombre": "Test",
+  "apellido": "Duplicado",
+  "email": "juan@example.com",
+  "password": "password123",
+  "password_confirmation": "password123"
+}
+
+### ERROR: Login con credenciales incorrectas
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "juan@example.com",
+  "password": "wrongpassword"
+}
+
+### ERROR: Acceder a ruta protegida sin token
+GET {{baseUrl}}/user
+
+### ERROR: Reservar asiento sin autenticación
+POST {{baseUrl}}/reservas
+Content-Type: application/json
+
+{
+  "evento_id": 1,
+  "asiento_id": 1
+}
+
+### ERROR: Reservar asiento ya ocupado
+POST {{baseUrl}}/reservas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "evento_id": 1,
+  "asiento_id": 1
+}
+
+### ERROR: Usuario normal intenta crear evento
+POST {{baseUrl}}/admin/eventos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Evento Test",
+  "descripcion_corta": "Test",
+  "descripcion_larga": "Test",
+  "fecha": "2026-12-31",
+  "hora": "20:00"
+}
+
+### ERROR: Crear evento con fecha duplicada
+POST {{baseUrl}}/admin/eventos
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "nombre": "Evento Duplicado",
+  "descripcion_corta": "Test",
+  "descripcion_larga": "Test",
+  "fecha": "2026-06-15",
+  "hora": "20:00"
+}
+
+### ERROR: Confirmar compra con reserva expirada
+# (Esperar 15 minutos después de reservar)
+POST {{baseUrl}}/compras
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "reservas": [999]
+}
+
+###############################################
+# TESTS DE RACE CONDITION
+###############################################
+
+### TEST: Reservar mismo asiento simultáneamente (Usuario 1)
+POST {{baseUrl}}/reservas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "evento_id": 1,
+  "asiento_id": 500
+}
+
+### TEST: Reservar mismo asiento simultáneamente (Usuario 2)
+# Ejecutar inmediatamente después del anterior
+POST {{baseUrl}}/reservas
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "evento_id": 1,
+  "asiento_id": 500
+}
+
+###############################################
+# INSTRUCCIONES DE USO
+###############################################
+
+# 1. CONFIGURAR VARIABLES:
+#    - Actualiza @baseUrl si tu servidor no está en localhost
+#    - Los IDs se actualizarán según tus datos
+#
+# 2. OBTENER TOKENS:
+#    - Ejecuta CU-02 (login usuario) y copia el token en @token
+#    - Ejecuta CU-02b (login admin) y copia el token en @adminToken
+#
+# 3. EJECUTAR TESTS:
+#    - Click en "Send Request" sobre cada petición
+#    - O usa Ctrl+Alt+R (Windows/Linux) / Cmd+Alt+R (Mac)
+#
+# 4. VER RESPUESTAS:
+#    - Se abrirá un panel a la derecha con la respuesta
+#    - Verifica el código HTTP (200, 201, 400, 401, 403, 404)
+#
+# 5. FLUJO RECOMENDADO:
+#    a) Ejecutar CU-02b para obtener adminToken
+#    b) Ejecutar CU-02 para obtener token
+#    c) Probar casos de uso en orden
+#    d) Ejecutar flujo completo
+#    e) Probar casos de error
+#
+# 6. ACTUALIZAR IDs:
+#    - Después de crear recursos, actualiza las variables
+#    - Usa los IDs de las respuestas JSON
+
+###############################################
+# NOTAS IMPORTANTES
+###############################################
+
+# - Los tokens expiran según configuración de Sanctum
+# - Las reservas expiran en 15 minutos
+# - Solo 1 evento por fecha (unique constraint)
+# - Los asientos se liberan automáticamente cada minuto
+# - El admin puede eliminar eventos sin entradas vendidas
+# - Los usuarios solo ven sus propias reservas/entradas
